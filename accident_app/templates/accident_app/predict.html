@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accident Detection</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  </head>
+  <body class="bg-dark text-white">
+    <div class="container mt-5">
+      <h2 class="mb-4 text-center">🚗 Accident Detection System</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">{{ form.as_p }}</div>
+        <button class="btn btn-primary">Predict</button>
+      </form>
+
+      {% if result %}
+      <div class="alert alert-info mt-4">
+        <h4>Result: {{ result.prediction }}</h4>
+        <p>Confidence: {{ result.confidence }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
